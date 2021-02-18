@@ -112,7 +112,7 @@
 				$session_DisplayName = $_SESSION["SESS_DISPLAYNAME"];
 				echo "Welcome <strong>" . $session_DisplayName . "!</strong> [<a href='logout.php'>Logout</a>]";
 			} else {
-				echo "<a href='login.php'>Login</a>";
+				header("location: login.php");
 			}
 		}
 	?>

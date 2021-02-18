@@ -9,6 +9,7 @@
 	}
 	$has_Cookie_DisplayName = isset($_SESSION["COOKIE_DISPLAYNAME"]);
 	if($has_Cookie_DisplayName == true) {
+		unset($_COOKIE["COOKIE_DISPLAYNAME"]);
 		setcookie("COOKIE_DISPLAYNAME", null, -1);
 	}
 	header("logcall.php");

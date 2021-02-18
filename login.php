@@ -24,17 +24,15 @@
 		if($row = $result->fetch_assoc()) {
 			$id = $row["user_id"];
 			$pass = $row["password_id"];
-		
+			
 		if($userid == $id && $password == $pass) {
-			$_SESSION["SESS_DISPLAYNAME"] = "David";
+			$_SESSION["SESS_DISPLAYNAME"] = $userid;
 			
 			$rememberMeChecked = isset($_POST["cbRememberMe"]);
 			if($rememberMeChecked == true) {
-				$expiryTime = time() + 60 * 60 * 24 * 30;
-				setcookie("COOKIE_DISPLAYNAME","David",$expiryTime);
+				$expiryTime = time() + 0;
+				setcookie("COOKIE_DISPLAYNAME",$userid,$expiryTime);
 			}
-			$userid = $_POST["userid"];
-			$_SESSION["userid"] = $userid;
 			header("location: logcall.php");
 		} else {
 			echo "<span style='color:red'>Wrong Username / Password </span>";
@@ -42,8 +40,6 @@
 	}
 }
 $conn->close();
-
-	
 ?>
 <!doctype html>
 <html>
