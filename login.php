@@ -1,5 +1,49 @@
 <?php
-	session_start();
+	if(isset($_SESSION) == false) {
+		session_start();
+	}
+
+	$has_Cookie_DisplayName = isset($_COOKIE["COOKIE_DISPLAYNAME"]);
+	if($has_Cookie_DisplayName == true) {
+		$_SESSION["SESS_DISPLAYNAME"] = $_COOKIE["COOKIE_DISPLAYNAME"];
+	}
+
+	if(isset($_SESSION["SESS_DISPLAYNAME"])) {
+		header("location: logcall.php");
+	}
+
+	require_once "db.php";
+	$conn = new mysqli(DB_SERVER,DB_USER,DB_PASSWORD,DB_DATABASE);
+	$isLoginButtonClicked = isset($_POST["btnSubmit"]);
+	if($isLoginButtonClicked == true) {
+		$userid = $_POST["userid"];
+		$password = $_POST["password"];
+		$sql = "SELECT * FROM `login` WHERE `user_id`='" . $userid . "' AND `password_id`='" . $password . "'";
+		$result = $conn->query($sql);
+		
+		if($row = $result->fetch_assoc()) {
+			$id = $row["user_id"];
+			$pass = $row["password_id"];
+		
+		if($userid == $id && $password == $pass) {
+			$_SESSION["SESS_DISPLAYNAME"] = "David";
+			
+			$rememberMeChecked = isset($_POST["cbRememberMe"]);
+			if($rememberMeChecked == true) {
+				$expiryTime = time() + 60 * 60 * 24 * 30;
+				setcookie("COOKIE_DISPLAYNAME","David",$expiryTime);
+			}
+			$userid = $_POST["userid"];
+			$_SESSION["userid"] = $userid;
+			header("location: logcall.php");
+		} else {
+			echo "<span style='color:red'>Wrong Username / Password </span>";
+		}
+	}
+}
+$conn->close();
+
+	
 ?>
 <!doctype html>
 <html>
@@ -12,31 +56,27 @@
 <body>
 <div class="container" style="width: 900px">
 	<?php include "loginheader.php" ?>
-	
 	<form action="<?php echo htmlentities($_SERVER["PHP_SELF"])?>" method="post" class="mt-4 py-3">
-		Name: <input type="text" name="name">
-		User Id: <input type="text" name="userid">
-		Password: <input type="password" name="password">
-		<input type="submit" name="submit" value="Login">
 
+	  <div class="form-group">
+		<label for="username">User Id</label>
+		<input type="text" class="form-control" placeholder="Enter your username" name="userid">
+	  </div>
+
+	  <div class="form-group">
+		<label for="userpassword">Password</label>
+		<input type="password" class="form-control" placeholder="Enter your password" name="password">
+		<small class="form-text text-muted">We'll never share your password with anyone else.</small>
+	  </div>
+		
+	  <div class="form-group">
+		<label for="rememberme">Remember me</label>
+		<input type="checkbox" name="cbRememberMe" id="cbRememberMe" value="Yes">
+	  </div>	
+
+	  <input type="submit" name="btnSubmit" value="Login" class="btn btn-primary">
 		
 	</form>
-		<?php
-		$isSubmitClicked = isset($_POST["submit"]);
-		if($isSubmitClicked == true) {
-			$userId = $_POST["userid"];
-			$password = $_POST["password"];
-			if($userId == true && $password == true) {
-				$name = $_POST["name"];
-				$_SESSION["name"] = $name;
-				header("location: logcall.php");
-			}
-			else {
-				echo "Invalid login!";
-			}
-		}
-	?>
-
 	<?php
 		include "footer.php";
 	?>
