@@ -22,8 +22,30 @@
               <div class="dropdown-divider"></div>
 				
               <a class="dropdown-item" href="#">Something else here</a> </div>
-          </li>
+		   </li>
         </ul>
+		<ul class="navbar-nav my-2 my-sm-0" style="color:white">
+		   <li>
+		   <?php
+				$has_Cookie_DisplayName = isset($_COOKIE["COOKIE_DisplayName"]);
+				if($has_Cookie_DisplayName == true) {
+					$_cookie_DisplayName = $_COOKIE["COOKIE_DisplayName"];
+					echo "Welcome <strong>" . $_cookie_DisplayName . "!</strong> [<a href='logout.php'>Logout</a>]";
+				} else {
+					if(isset($_SESSION) == false) {
+						session_start();
+					}
+					$has_Session_DisplayName = isset($_SESSION["SESS_DISPLAYNAME"]);
+					if($has_Session_DisplayName == true) {
+						$session_DisplayName = $_SESSION["SESS_DISPLAYNAME"];
+						echo "Welcome <strong>" . $session_DisplayName . "!</strong> [<a href='logout.php'>Logout</a>]";
+					} else {
+						header("location: login.php");
+					}
+				}
+		   ?>
+		   </li>
+		</ul>
       </div>
     </nav>
   </header>

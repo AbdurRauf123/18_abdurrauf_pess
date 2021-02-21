@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent1">
         <ul class="navbar-nav mr-auto">
 			
-          <li class="nav-item active"> <a class="nav-link" href="login.php">Home <span class="sr-only">(current)</span></a> </li>
+          <li class="nav-item"> <a class="nav-link" href="login.php">Home <span class="sr-only">(current)</span></a> </li>
 			
           <li class="nav-item"> <a class="nav-link" href="login.php">Dispatch</a> </li>
 			
@@ -24,6 +24,9 @@
               <a class="dropdown-item" href="#">Something else here</a> </div>
           </li>
         </ul>
+		<ul class="navbar-nav my-2 my-sm-0">
+		  <li class="nav-item active "> <a class="nav-link " href="login.php">Login <span class="sr-only">(current)</span></a> </li>
+		</ul>		  
       </div>
     </nav>
   </header>

@@ -24,19 +24,13 @@
 		if($row = $result->fetch_assoc()) {
 			$id = $row["user_id"];
 			$pass = $row["password_id"];
-			
-			if($id == true && $pass == true) {
-				$_SESSION["SESS_DISPLAYNAME"] = $userid;
-
-				$rememberMeChecked = isset($_POST["cbRememberMe"]);
-				if($rememberMeChecked == true) {
-					$expiryTime = time() + 0;
-					setcookie("COOKIE_DISPLAYNAME",$userid,$expiryTime);
-				}
-				header("location: logcall.php");
-			} else {
-				echo "<span style='color:red'>Wrong Username / Password </span>";
+			$_SESSION["SESS_DISPLAYNAME"] = $userid;
+			$rememberMeChecked = isset($_POST["cbRememberMe"]);
+			if($rememberMeChecked == true) {
+				$expiryTime = time() + 0;
+				setcookie("COOKIE_DISPLAYNAME",$userid,$expiryTime);
 			}
+			header("location: logcall.php");
 		}
 	}
 	$conn->close();
