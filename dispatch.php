@@ -19,8 +19,8 @@
 	$conn->close();	
 
 	$btnDispatchClicked = isset($_POST["btnDispatch"]);
-	$btnProcessCallClicked = isset($_POST["btnProcessCall"]); 
-	if($btnDispatchClicked == false && $btnProcessCallClicked == false) {
+	$btnProceedClicked = isset($_POST["btnProceed"]); 
+	if($btnDispatchClicked == false && $btnProceedClicked == false) {
 		header("location: logcall.php");
 	}
 

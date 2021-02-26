@@ -11,7 +11,6 @@
 		array_push($incidentTypes,$incidentType);
 	}
 	$conn->close();
-	
 ?>
 <!doctype html>
 <html>
@@ -28,7 +27,7 @@
 	?>
 	
 	<section class="mt-3">
-	  <form action="dispatch.php" method="post">
+	  <form action="duplicate.php" method="post">
 		  
 	    <div class="form-group row">
 	      <label for="callerName" class="col-sm-4 col-form-label">Caller's Name</label>
@@ -58,7 +57,7 @@
 				<option value="">Select</option>
 				<?php
 					foreach($incidentTypes as $incidentType) {
-						echo "<option value=\"" . $incidentType["id"] . "\">" . $incidentType["type"] . "</option>";
+						echo "<option value=\"" . $incidentType["type"] . "\">" . $incidentType["type"] . "</option>";
 					}
 				?>
 				
