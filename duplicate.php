@@ -7,15 +7,16 @@
 
 	require_once "db.php";
 	$conn = new mysqli(DB_SERVER,DB_USER,DB_PASSWORD,DB_DATABASE);
-	$sql = "SELECT `caller_name`,`phone_number`,`incident_location`,`incident_type_id` FROM `incident` WHERE `incident_status_id`=1 OR 2";
+	$sql = "SELECT `caller_name`,`phone_number`,`incident_location`, `incident_desc`, `incident_type_id` FROM `incident` WHERE `incident_status_id`=1 OR 2 ORDER BY caller_name ASC";
 	$result = $conn->query($sql);
 	$datas = [];
 	while($row = $result->fetch_assoc()) {
 		$name = $row["caller_name"];
 		$number = $row["phone_number"];
 		$location = $row["incident_location"];
+		$desc = $row["incident_desc"];
 		$type = $row["incident_type_id"];
-		$data = ["name"=>$name,"number"=>$number,"location"=>$location,"type"=>$type];
+		$data = ["name"=>$name,"number"=>$number,"location"=>$location,"desc"=>$desc,"type"=>$type];
 		array_push($datas,$data);
 	}
 	$conn->close();	
@@ -100,13 +101,14 @@
 	    </div>
 		
 		<div class="form-group row">
-		  <div class="offset-sm-1 col-sm-10">
-			  <table class="table table-striped">
+		  <div class="offset-sm col-sm">
+			  <table class="table table-striped table-bordered table-dark">
 			  	<tbody>
 					<tr>
 						<th>Caller Name</th>
 						<th>Contact No</th>
 						<th>Location</th>
+						<th>Incident Description</th>
 						<th>Incident Type</th>
 					</tr>
 					<?php foreach($datas as $data){
@@ -114,6 +116,7 @@
 								"<td>" . $data["name"] . "</td>" .
 								"<td>" . $data["number"] . "</td>" .
 								"<td>" . $data["location"] . "</td>" .
+								"<td>" . $data["desc"] . "</td>" .
 								"<td>" . $data["type"] . "</td>" .
 							"</tr>";
 					}

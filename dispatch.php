@@ -7,7 +7,7 @@
 
 	require_once "db.php";
 	$conn = new mysqli(DB_SERVER,DB_USER,DB_PASSWORD,DB_DATABASE);
-	$sql = "SELECT patrolcar.patrolcar_id,patrolcar_status.patrolcar_status_desc FROM `patrolcar` inner join patrolcar_status on patrolcar.patrolcar_status_id = patrolcar_status.patrolcar_status_id";
+	$sql = "SELECT patrolcar.patrolcar_id,patrolcar_status.patrolcar_status_desc FROM `patrolcar` inner join patrolcar_status on patrolcar.patrolcar_status_id = patrolcar_status.patrolcar_status_id WHERE patrolcar.patrolcar_status_id=3";
 	$result = $conn->query($sql);
 	$cars = [];
 	while($row = $result->fetch_assoc()) {
@@ -152,7 +152,7 @@
 		  <div class="form-group row">
 	      <label for="patrolCar" class="col-sm-4 col-form-label">Choose Patrol Car(s)</label>
 		  <div class="col-sm-8">
-			  <table class="table table-striped">
+			  <table class="table table-striped table-bordered table-dark">
 			  	<tbody>
 					<tr>
 						<th>Car Number</th>
