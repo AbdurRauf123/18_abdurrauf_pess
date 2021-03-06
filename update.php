@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	require_once "db.php";
 	$isBtnSearchClicked = isset($_POST["btnSearch"]);
 	$car = null;

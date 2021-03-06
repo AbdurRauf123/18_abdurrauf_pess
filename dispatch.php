@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	$callerName = $_POST["callerName"];
 	$contactNo = $_POST["contactNo"];
 	$locationOfIncident = $_POST["locationOfIncident"];

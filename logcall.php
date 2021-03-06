@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	require_once "db.php";
 	$conn = new mysqli(DB_SERVER,DB_USER,DB_PASSWORD,DB_DATABASE);
 	$sql = "SELECT * FROM incident_type";

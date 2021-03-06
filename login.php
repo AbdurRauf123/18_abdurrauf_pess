@@ -1,7 +1,5 @@
 <?php
-	if(isset($_SESSION) == false) {
-		session_start();
-	}
+	session_start();
 
 	$has_Cookie_DisplayName = isset($_COOKIE["COOKIE_DISPLAYNAME"]);
 	if($has_Cookie_DisplayName == true) {

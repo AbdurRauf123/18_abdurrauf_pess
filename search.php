@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	require_once "db.php";
 	$conn = new mysqli(DB_SERVER,DB_USER,DB_PASSWORD,DB_DATABASE);
 	$sql = "SELECT patrolcar.patrolcar_id,patrolcar_status.patrolcar_status_desc FROM `patrolcar` inner join patrolcar_status on patrolcar.patrolcar_status_id = patrolcar_status.patrolcar_status_id WHERE patrolcar.patrolcar_status_id=1";
