@@ -36,6 +36,8 @@
 					if($has_Session_DisplayName == true) {
 						$session_DisplayName = $_SESSION["SESS_DISPLAYNAME"];
 						echo "Welcome <strong>" . $session_DisplayName . "!</strong> [<a href='logout.php'>Logout</a>]";
+					} else {
+					 	header("location: login.php");
 					}
 				}
 		   ?>

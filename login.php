@@ -32,6 +32,10 @@
 		}
 	}
 	$conn->close();
+
+	if(isset($_POST["btnRegister"])) {
+		header("location: register.php");
+	}
 ?>
 <!doctype html>
 <html>
@@ -78,6 +82,8 @@
 	  </div>	
 
 	  <input type="submit" name="btnSubmit" value="Login" class="btn btn-primary">
+		
+	  <input type="submit" name="btnRegister" value="Register" class="btn btn-danger">
 		
 	</form>
 	<?php
