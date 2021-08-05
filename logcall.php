@@ -61,7 +61,6 @@
 						echo "<option value=\"" . $incidentType["id"] . "\">" . $incidentType["type"] . "</option>";
 					}
 				?>
-				
 			</select>  
 		  </div>
 	    </div>
